@@ -1,0 +1,14 @@
+digraph ProcessStateMachine {
+   # rankdir=LR
+    "" [shape=none]
+    ready
+    running
+    waiting
+    terminated
+    "" -> ready [label="create"]
+    ready -> running [label="dispatch"]
+    running -> ready [label="interrupt"]
+    running -> waiting [label="I/O or event wait"]
+    waiting -> ready [label="I/O or event completion"]
+    running -> terminated [label="exit or kill"]
+}
